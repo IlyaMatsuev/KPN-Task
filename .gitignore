@@ -1,0 +1,38 @@
+# IDEs
+.vscode/
+.idea/
+
+# Docs
+*.doc
+*.docx
+
+# Salesforce cache
+.sfdx/
+.localdevserver/
+IlluminatedCloud/
+
+# LWC VSCode autocomplete
+**/lwc/jsconfig.json
+
+# LWC Jest coverage reports
+coverage/
+
+# SOQL Query Results
+**/scripts/soql/query-results
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Eslint cache
+.eslintcache
+
+# MacOS system files
+.DS_Store
