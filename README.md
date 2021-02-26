@@ -18,17 +18,17 @@ Build 2 LWC components and put them on order record page:
 
 ## Detailed Requirements
 
-- [ ] The solution is available as a repository on GitHub/Bitbucket etc
+- [x] The solution is available as a repository on GitHub/Bitbucket etc
 
   - [x] Code should be deployable using SFDX
   - [x] Use git readme for feedback and notes
-  - [ ] Try to commit while developing
+  - [x] Try to commit while developing
 
-- [ ] The “Available Products” component displays orderable products in a 2-column list displaying Name and List Price
-  - [ ] Products that are already added to the order should appear on top
-  - [ ] Each product can only appear once in the list
-  - [ ] **(Optional)** Sort by column
-  - [ ] **(Optional)** Search by product name
+- [x] The “Available Products” component displays orderable products in a 2-column list displaying Name and List Price
+  - [x] Products that are already added to the order should appear on top
+  - [x] Each product can only appear once in the list
+  - [x] **(Optional)** Sort by column
+  - [x] **(Optional)** Search by product name
 - [ ] The “Available Products” component has to provide the ability for the user to add a product from the list to the order
   - [ ] When the same product is not yet added to the order it will be added with a quantity of 1
   - [ ] When the product already exists the quantity of the existing order product should be increased by 1

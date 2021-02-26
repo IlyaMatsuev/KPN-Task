@@ -6,3 +6,6 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Unnecessary components
+PricebookEntry.listViews
