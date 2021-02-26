@@ -3,34 +3,34 @@
  -->
 
 <template>
-  <!-- TODO: move some params to designer -->
-  <lightning-card
-    title="Available Products"
-    variant="narrow"
-    icon-name="standard:product"
-  >
-    <div class="slds-m-horizontal_medium">
-      <lightning-input
-        type="search"
-        label=""
-        variant="label-hidden"
-        placeholder="Type Product Name..."
-        onchange={onProductSearch}
-        value={searchTerm}
-      >
-      </lightning-input>
-    </div>
-    <div slot="footer">
-      <lightning-datatable
-        key-field="id"
-        hide-checkbox-column="true"
-        sorted-by={sortBy}
-        sorted-direction={sortDirection}
-        onsort={onProductsSort}
-        data={data}
-        columns={columns}
-      >
-      </lightning-datatable>
-    </div>
-  </lightning-card>
+    <!-- TODO: move some params to designer -->
+    <lightning-card
+        title="Available Products"
+        variant="narrow"
+        icon-name="standard:product"
+    >
+        <div class="slds-m-horizontal_medium">
+            <lightning-input
+                type="search"
+                label=""
+                variant="label-hidden"
+                placeholder="Type Product Name..."
+                onchange={onProductSearch}
+                value={searchTerm}
+            >
+            </lightning-input>
+        </div>
+        <div slot="footer">
+            <lightning-datatable
+                key-field="id"
+                hide-checkbox-column="true"
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                onsort={onProductsSort}
+                data={data}
+                columns={columns}
+            >
+            </lightning-datatable>
+        </div>
+    </lightning-card>
 </template>

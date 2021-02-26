@@ -3,9 +3,9 @@
  */
 
 public interface IPricebookDao {
-  Map<Id, PricebookEntry> getEntriesByPricebookOrEntriesIdLike(
-    Id pricebookId,
-    Set<Id> pricebookEntriesIds,
-    String productNameSearchTerm
-  );
+    Map<Id, PricebookEntry> getEntriesByPricebookOrEntriesIdLike(
+        Id pricebookId,
+        Set<Id> pricebookEntriesIds,
+        String productNameSearchTerm
+    );
 }

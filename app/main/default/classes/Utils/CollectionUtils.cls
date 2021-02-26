@@ -3,14 +3,14 @@
  */
 
 public with sharing class CollectionUtils {
-  public static Set<Id> getIdFieldFromList(
-    List<SObject> sObjects,
-    String fieldName
-  ) {
-    Set<Id> ids = new Set<Id>();
-    for (SObject sObj : sObjects) {
-      ids.add((Id) sObj.get(fieldName));
+    public static Set<Id> getIdFieldFromList(
+        List<SObject> sObjects,
+        String fieldName
+    ) {
+        Set<Id> ids = new Set<Id>();
+        for (SObject sObj : sObjects) {
+            ids.add((Id) sObj.get(fieldName));
+        }
+        return ids;
     }
-    return ids;
-  }
 }

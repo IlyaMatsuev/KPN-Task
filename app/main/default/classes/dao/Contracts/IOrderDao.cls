@@ -3,5 +3,5 @@
  */
 
 public interface IOrderDao {
-  Order getById(Id id);
+    Order getById(Id id);
 }
