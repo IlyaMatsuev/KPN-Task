@@ -3,9 +3,9 @@
  */
 
 public with sharing class AvailableProductComponentService implements IAvailableProductComponentService {
-    private final static String ORDER_LOCKED_ERROR_CODE = 'ENTITY_IS_LOCKED';
+    public final static Decimal INIT_QUANTITY_AMOUNT = 1;
 
-    private final static Decimal INIT_QUANTITY_AMOUNT = 1;
+    private final static String ORDER_LOCKED_ERROR_CODE = 'ENTITY_IS_LOCKED';
 
     private final IOrderDao orderDao = new OrderDao();
     private final IPricebookDao pricebookDao = new PricebookDao();

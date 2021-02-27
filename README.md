@@ -45,7 +45,7 @@ Build 2 LWC components and put them on order record page:
 
     -   [ ] When activated the end user will not be able to add new order items or confirm the order for a second time
 
--   [ ] A test coverage of at least 80% for both APEX components is required
+-   [x] A test coverage of at least 80% for both APEX components is required
 
 -   [x] We would like to see LWC, but Aura/Vlocity is ok as well
 
