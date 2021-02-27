@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>NoOrderErrorMessage</fullName>
+        <categories>OrderDao</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoOrderErrorMessage</shortDescription>
+        <value>There is no order with such id</value>
+    </labels>
+    <labels>
+        <fullName>OrderLockedErrorMessage</fullName>
+        <categories>AvailableProductComponent</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>OrderLockedErrorMessage</shortDescription>
+        <value>You cannot add new products after the order is activated</value>
+    </labels>
+    <labels>
+        <fullName>UnexpectedErrorMessage</fullName>
+        <categories>AvailableProductComponent</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UnexpectedErrorMessage</shortDescription>
+        <value
+        >Some unexpected error happened. Contact your administrator</value>
+    </labels>
+</CustomLabels>

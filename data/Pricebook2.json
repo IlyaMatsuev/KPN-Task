@@ -1,0 +1,12 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Pricebook2",
+                "referenceId": "Pricebook2Ref1"
+            },
+            "Name": "Custom Price Book",
+            "IsActive": true
+        }
+    ]
+}

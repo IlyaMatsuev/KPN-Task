@@ -1,0 +1,32 @@
+[
+    {
+        "sobject": "Account",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": ["Account.json"]
+    },
+    {
+        "sobject": "Product2",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": ["Product2.json"]
+    },
+    {
+        "sobject": "Pricebook2",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": ["Pricebook2.json"]
+    },
+    {
+        "sobject": "Contract",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["Contract.json"]
+    },
+    {
+        "sobject": "Order",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": ["Order.json"]
+    }
+]

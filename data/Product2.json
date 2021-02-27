@@ -1,0 +1,140 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref1"
+            },
+            "Name": "GenWatt Diesel 200kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref2"
+            },
+            "Name": "GenWatt Diesel 10kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref3"
+            },
+            "Name": "Installation: Industrial - High",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref4"
+            },
+            "Name": "SLA: Silver",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref5"
+            },
+            "Name": "GenWatt Propane 500kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref6"
+            },
+            "Name": "SLA: Platinum",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref7"
+            },
+            "Name": "GenWatt Propane 100kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref8"
+            },
+            "Name": "GenWatt Propane 1500kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref9"
+            },
+            "Name": "GenWatt Diesel 1000kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref10"
+            },
+            "Name": "SLA: Bronze",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref11"
+            },
+            "Name": "GenWatt Gasoline 750kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref12"
+            },
+            "Name": "Installation: Portable",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref13"
+            },
+            "Name": "SLA: Gold",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref14"
+            },
+            "Name": "GenWatt Gasoline 300kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref15"
+            },
+            "Name": "Installation: Industrial - Low",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref16"
+            },
+            "Name": "GenWatt Gasoline 2000kW",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref17"
+            },
+            "Name": "Installation: Industrial - Medium",
+            "IsActive": true
+        }
+    ]
+}

@@ -14,8 +14,14 @@ const columns = [
 
 const sorting = {
     sortBy: 'listPrice',
-    sortByPrioritized: 'attachedToOrder',
+    sortByPrioritized: 'assignedToOrder',
     sortDirection: 'desc'
 };
 
-export { columns, sorting };
+const component = {
+    title: 'Available Products',
+    icon: 'standard:product',
+    noDataMessage: 'Sorry, there is nothing to show you!'
+};
+
+export { columns, sorting, component };

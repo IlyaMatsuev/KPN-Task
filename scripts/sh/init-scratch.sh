@@ -30,4 +30,12 @@ echo "Deploying to $scratch_alias..."
 sfdx force:source:push -u "$scratch_alias"
 
 echo
+echo "Assigning permissions..."
+sfdx force:user:permset:assign -n Available_Products_Component -u "$scratch_alias"
+
+echo
+echo "Loading data..."
+sfdx force:data:tree:import -p data/data-loading-plan.json -u "$scratch_alias"
+
+echo
 sfdx force:org:open -u "$scratch_alias"

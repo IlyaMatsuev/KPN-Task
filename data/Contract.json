@@ -1,0 +1,15 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Contract",
+                "referenceId": "ContractRef1"
+            },
+            "Status": "Draft",
+            "StartDate": "2021-02-28",
+            "ContractTerm": 3,
+            "AccountId": "@AccountRef1",
+            "Pricebook2Id": "@Pricebook2Ref1"
+        }
+    ]
+}

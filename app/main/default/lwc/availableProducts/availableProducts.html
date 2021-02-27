@@ -3,34 +3,61 @@
  -->
 
 <template>
-    <!-- TODO: move some params to designer -->
-    <lightning-card
-        title="Available Products"
-        variant="narrow"
-        icon-name="standard:product"
-    >
+    <lightning-card title={title} variant="narrow" icon-name={icon}>
         <div class="slds-m-horizontal_medium">
-            <lightning-input
-                type="search"
-                label=""
-                variant="label-hidden"
-                placeholder="Type Product Name..."
-                onchange={onProductSearch}
-                value={searchTerm}
-            >
-            </lightning-input>
+            <div class="slds-m-top_medium slds-m-bottom_xx-small">
+                <div class="slds-text-align_right">
+                    <lightning-button
+                        variant="brand"
+                        label="Add Products"
+                        title="Add Products"
+                        disabled={loading}
+                        onclick={onAddProducts}
+                    >
+                    </lightning-button>
+                </div>
+            </div>
+            <div>
+                <lightning-input
+                    type="search"
+                    label=""
+                    variant="label-hidden"
+                    placeholder="Type Product Name..."
+                    onchange={onProductSearch}
+                    value={searchTerm}
+                >
+                </lightning-input>
+            </div>
         </div>
         <div slot="footer">
-            <lightning-datatable
-                key-field="id"
-                hide-checkbox-column="true"
-                sorted-by={sortBy}
-                sorted-direction={sortDirection}
-                onsort={onProductsSort}
-                data={data}
-                columns={columns}
-            >
-            </lightning-datatable>
+            <template if:true={loading}>
+                <div class="slds-is-relative slds-p-vertical_x-large">
+                    <lightning-spinner
+                        alternative-text="Loading..."
+                        variant="brand"
+                    >
+                    </lightning-spinner>
+                </div>
+            </template>
+            <template if:false={loading}>
+                <template if:true={haveData}>
+                    <lightning-datatable
+                        key-field="id"
+                        class="products-table"
+                        sorted-by={sortBy}
+                        sorted-direction={sortDirection}
+                        onsort={onProductsSort}
+                        data={data}
+                        columns={columns}
+                    >
+                    </lightning-datatable>
+                </template>
+                <template if:false={haveData}>
+                    <div class="slds-text-align_center slds-m-vertical_small">
+                        <span>{noDataMessage}</span>
+                    </div>
+                </template>
+            </template>
         </div>
     </lightning-card>
 </template>

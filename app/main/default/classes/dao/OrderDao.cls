@@ -6,17 +6,23 @@ public with sharing class OrderDao implements IOrderDao {
     public Order getById(Id id) {
         List<Order> orders = [
             SELECT
-                Id,
                 Pricebook2Id,
-                (SELECT Id, OrderId, PricebookEntryId FROM OrderItems)
+                (
+                    SELECT OrderId, PricebookEntryId, Product2.Id, Quantity
+                    FROM OrderItems
+                )
             FROM Order
             WHERE Id = :id
+            LIMIT 1
         ];
         if (orders.isEmpty()) {
-            throw new QueryException(
-                'There is no such order with of id: ' + id
-            );
+            throw new QueryException(Label.NoOrderErrorMessage);
         }
         return orders.get(0);
+    }
+
+    public List<OrderItem> upsertOrderItems(List<OrderItem> orderItems) {
+        Database.upsert(orderItems);
+        return orderItems;
     }
 }
