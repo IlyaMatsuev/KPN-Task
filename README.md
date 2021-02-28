@@ -41,9 +41,9 @@ Build 2 LWC components and put them on order record page:
     -   [x] When the user adds a new product or updates an existing product on the order (see point 3) the list is refreshed to display the newly added
     -   [x] **(Optional)** Sort the list by column
 
--   [ ] "Order Products" component has an "Activate" button that sets the status of the order and order items to "Activated"
+-   [x] "Order Products" component has an "Activate" button that sets the status of the order and order items to "Activated"
 
-    -   [ ] When activated the end user will not be able to add new order items or confirm the order for a second time
+    -   [x] When activated the end user will not be able to add new order items or confirm the order for a second time
 
 -   [x] A test coverage of at least 80% for both APEX components is required
 

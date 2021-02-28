@@ -3,7 +3,7 @@
  */
 
 public with sharing class OrderProductComponentController {
-    private static final IOrderService orderService = new OrderService();
+    private static final IOrderProductComponentService service = new OrderProductComponentService();
 
     /**
      * @description Returns products that are assigned to the order
@@ -12,20 +12,22 @@ public with sharing class OrderProductComponentController {
     @AuraEnabled(Cacheable=true)
     public static List<ProductWrapper> getOrderedProducts(Id orderId) {
         try {
-            Order order = orderService.getOrder(orderId);
-            List<ProductWrapper> products = new List<ProductWrapper>();
-            for (OrderItem orderItem : order.OrderItems) {
-                products.add(
-                    new ProductWrapper(
-                        orderItem.Product2.Id,
-                        orderItem.Product2.Name,
-                        orderItem.UnitPrice,
-                        orderItem.Quantity,
-                        orderItem.TotalPrice
-                    )
-                );
-            }
-            return products;
+            Order order = service.getOrder(orderId);
+            return service.getOrderedProducts(order);
+        } catch (Exception error) {
+            throw new AuraHandledException(error.getMessage());
+        }
+    }
+
+    /**
+     * @description Sets status of the order to 'Activated'
+     * @return Returns updated order
+     * */
+    @AuraEnabled
+    public static Order activateOrder(Id orderId) {
+        try {
+            Order order = service.getOrder(orderId);
+            return service.activateOrder(order);
         } catch (Exception error) {
             throw new AuraHandledException(error.getMessage());
         }

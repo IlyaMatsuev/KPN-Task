@@ -4,10 +4,12 @@
 
 import { LightningElement, track, api, wire } from 'lwc';
 import getOrderedProducts from '@salesforce/apex/OrderProductComponentController.getOrderedProducts';
+import activateOrder from '@salesforce/apex/OrderProductComponentController.activateOrder';
 import { refreshApex } from '@salesforce/apex';
+import { getRecordNotifyChange } from 'lightning/uiRecordApi';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
-import { controlConfig, tableConfig, component } from './config';
 import { CurrentPageReference } from 'lightning/navigation';
+import { controlConfig, tableConfig, component } from './config';
 
 export default class OrderProducts extends LightningElement {
     @api recordId;
@@ -17,14 +19,20 @@ export default class OrderProducts extends LightningElement {
 
     @track loading = true;
 
-    @track controlsConfig = controlConfig;
+    @track controlsConfig = {
+        ...controlConfig,
+        button: {
+            ...controlConfig.button,
+            onClick: this.onActivateOrder.bind(this)
+        }
+    };
 
     @track tableConfig = {
         ...tableConfig,
         onSort: this.onProductsSort.bind(this)
     };
 
-    get orderProductsTemplate() {
+    get genericTemplate() {
         return this.template.querySelector('.generic-template');
     }
 
@@ -37,10 +45,8 @@ export default class OrderProducts extends LightningElement {
         if (!error && !data) {
             this.loading = true;
         } else if (error) {
-            this.orderProductsTemplate.notify(error.body.message, 'error');
-            this.loading = false;
+            this.handleError(error);
         } else {
-            console.log('data1: ' + JSON.stringify(data, null, '  '));
             this.tableConfig.data =
                 this.sort(
                     data,
@@ -74,6 +80,24 @@ export default class OrderProducts extends LightningElement {
             sortBy: detail.fieldName,
             sortDirection: detail.sortDirection
         };
+    }
+
+    onActivateOrder() {
+        this.loading = true;
+        activateOrder({ orderId: this.recordId })
+            .then((order) => this.handleOrderActivation(order))
+            .catch((error) => this.handleError(error));
+    }
+
+    handleOrderActivation() {
+        this.genericTemplate.notify('Order was successfully activated');
+        getRecordNotifyChange([{ recordId: this.recordId }]);
+        this.loading = false;
+    }
+
+    handleError(error) {
+        this.genericTemplate.notify(error.body.message, 'error');
+        this.loading = false;
     }
 
     sort(data, field, direction) {

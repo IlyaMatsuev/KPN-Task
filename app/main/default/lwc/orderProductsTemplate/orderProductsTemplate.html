@@ -6,29 +6,33 @@
     <lightning-card title={title} variant="narrow" icon-name={icon}>
         <template if:true={controlsConfig.enableControls}>
             <div class="slds-m-horizontal_medium">
-                <div class="slds-m-top_medium slds-m-bottom_xx-small">
-                    <div class="slds-text-align_right">
-                        <lightning-button
-                            variant="brand"
-                            label={controlsConfig.button.label}
-                            title={controlsConfig.button.label}
-                            disabled={loading}
-                            onclick={controlsConfig.button.onClick}
-                        >
-                        </lightning-button>
+                <template if:true={controlsConfig.button}>
+                    <div class="slds-m-top_medium slds-m-bottom_xx-small">
+                        <div class="slds-text-align_right">
+                            <lightning-button
+                                variant="brand"
+                                label={controlsConfig.button.label}
+                                title={controlsConfig.button.label}
+                                disabled={buttonDisabled}
+                                onclick={controlsConfig.button.onClick}
+                            >
+                            </lightning-button>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <lightning-input
-                        type="search"
-                        label=""
-                        variant="label-hidden"
-                        placeholder="Type Product Name..."
-                        onchange={controlsConfig.search.onSearch}
-                        value={controlsConfig.search.searchTerm}
-                    >
-                    </lightning-input>
-                </div>
+                </template>
+                <template if:true={controlsConfig.search}>
+                    <div>
+                        <lightning-input
+                            type="search"
+                            label=""
+                            variant="label-hidden"
+                            placeholder="Type Product Name..."
+                            onchange={controlsConfig.search.onSearch}
+                            value={controlsConfig.search.searchTerm}
+                        >
+                        </lightning-input>
+                    </div>
+                </template>
             </div>
         </template>
         <div slot="footer">
@@ -45,7 +49,7 @@
                 <template if:true={haveData}>
                     <lightning-datatable
                         key-field="id"
-                        hide-checkbox-column={tableConfig.hideCheckboxes}
+                        hide-checkbox-column={checkboxesHidden}
                         class="products-table"
                         sorted-by={tableConfig.sortBy}
                         sorted-direction={tableConfig.sortDirection}
