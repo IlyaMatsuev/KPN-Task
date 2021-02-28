@@ -2,11 +2,13 @@
  * Created by Ilya Matsuev on 2/28/2021.
  */
 
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
+import { getRecord } from 'lightning/uiRecordApi';
+import STATUS_FIELD from '@salesforce/schema/Order.Status';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class OrderProductsTemplate extends LightningElement {
-    @api recordId;
+    @api orderId;
     @api title;
     @api icon;
     @api noDataMessage;
@@ -22,10 +24,33 @@ export default class OrderProductsTemplate extends LightningElement {
         );
     }
 
+    get buttonDisabled() {
+        return this.loading || this.orderStatus === 'Activated';
+    }
+
+    get checkboxesHidden() {
+        return (
+            this.tableConfig.hideCheckboxes || this.orderStatus === 'Activated'
+        );
+    }
+
+    get orderStatus() {
+        if (this.order && this.order.data) {
+            return this.order.data.fields[STATUS_FIELD.fieldApiName].value;
+        }
+        return '';
+    }
+
     @api
     get table() {
         return this.template.querySelector('.products-table');
     }
+
+    @wire(getRecord, {
+        recordId: '$orderId',
+        fields: [STATUS_FIELD]
+    })
+    order;
 
     @api
     notify(message, variant = 'success') {

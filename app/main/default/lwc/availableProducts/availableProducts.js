@@ -135,14 +135,8 @@ export default class AvailableProducts extends LightningElement {
 
     refreshView() {
         // Line below is needed to refresh standard order related list
-        // I could utilize getRecordNotifyChange method which came in Winter 21 but it has one disadvantage:
-        // - It will not update order related list if I create a new order item fot the order.
-        // This method can only update view for the records that were already presented
-        // Also, I could wrap this lwc component into an aura component and handle an event to call force:refreshView
-        // So, I found this trick below much easier
         // eslint-disable-next-line no-eval
         eval('$A.get("e.force:refreshView").fire();');
-
         // This is needed for other custom components
         fireEvent(this.pageRef, 'refreshView', {});
     }

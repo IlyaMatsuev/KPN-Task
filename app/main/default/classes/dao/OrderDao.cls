@@ -7,6 +7,7 @@ public with sharing class OrderDao implements IOrderDao {
         List<Order> orders = [
             SELECT
                 Pricebook2Id,
+                Status,
                 (
                     SELECT
                         OrderId,
@@ -32,5 +33,10 @@ public with sharing class OrderDao implements IOrderDao {
     public List<OrderItem> upsertOrderItems(List<OrderItem> orderItems) {
         Database.upsert(orderItems);
         return orderItems;
+    }
+
+    public Order updateOrder(Order order) {
+        Database.update(order);
+        return order;
     }
 }

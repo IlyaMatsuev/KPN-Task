@@ -9,7 +9,10 @@ const component = {
 };
 
 const controlConfig = {
-    enableControls: false
+    enableControls: true,
+    button: {
+        label: 'Activate'
+    }
 };
 
 const tableConfig = {

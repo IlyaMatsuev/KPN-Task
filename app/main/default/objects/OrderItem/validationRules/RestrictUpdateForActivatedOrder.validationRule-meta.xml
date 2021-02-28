@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RestrictUpdateForActivatedOrder</fullName>
+    <active>true</active>
+    <description
+    >Restricts inserting or updating of any order items if the order is in Activated status</description>
+    <errorConditionFormula
+    >ISPICKVAL(Order.Status, &apos;Activated&apos;)</errorConditionFormula>
+    <errorMessage
+    >You cannot update order items for the activated order</errorMessage>
+</ValidationRule>
