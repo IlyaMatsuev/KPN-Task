@@ -2,7 +2,7 @@
  * Created by Ilya Matsuev on 2/27/2021.
  */
 
-public interface IAvailableProductCmpTestDataFactory {
+public interface IOrderCmpTestDataFactory {
     Account createAccount(String name);
 
     Pricebook2 createPricebook(String name);

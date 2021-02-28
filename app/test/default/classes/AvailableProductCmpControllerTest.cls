@@ -4,8 +4,6 @@
 
 @IsTest
 private class AvailableProductCmpControllerTest {
-    private final static IAvailableProductCmpTestDataFactory factory = new AvailableProductCmpTestDataFactory();
-
     private final static String ACCOUNT_NAME = 'Apple';
     private final static String PRICEBOOK_NAME = 'Special Prices';
     private final static List<String> PRODUCT_NAMES = new List<String>{
@@ -29,50 +27,16 @@ private class AvailableProductCmpControllerTest {
 
     @TestSetup
     public static void setup() {
-        List<SObject> unrelatedSObjects = new List<SObject>();
-        Account account = factory.createAccount(ACCOUNT_NAME);
-        unrelatedSObjects.add(account);
-        Pricebook2 pricebook = factory.createPricebook(PRICEBOOK_NAME);
-        unrelatedSObjects.add(pricebook);
-        List<Product2> products = factory.createProducts(PRODUCT_NAMES);
-        unrelatedSObjects.addAll(products);
-
-        insert unrelatedSObjects;
-
-        Contract contract = factory.createContract(account.Id, pricebook.Id);
-        insert contract;
-
-        Order order = factory.createOrder(
-            account.Id,
-            contract.Id,
-            pricebook.Id
+        ITestDataFactoryFacade facade = new TestDataFactoryFacade(
+            new OrderCmpTestDataFactory()
         );
-        insert order;
-
-        unrelatedSObjects.clear();
-
-        List<PricebookEntry> standardPricebookEntries = factory.createPricebookEntries(
-            Test.getStandardPricebookId(),
-            products,
-            STANDARD_PRODUCT_PRICES
-        );
-        unrelatedSObjects.addAll(standardPricebookEntries);
-        List<PricebookEntry> specialPricebookEntries = factory.createPricebookEntries(
-            pricebook.Id,
-            products,
+        facade.setup(
+            ACCOUNT_NAME,
+            PRICEBOOK_NAME,
+            PRODUCT_NAMES,
+            STANDARD_PRODUCT_PRICES,
             SPECIAL_PRODUCT_PRICES
         );
-        unrelatedSObjects.addAll(specialPricebookEntries);
-        insert unrelatedSObjects;
-
-        List<OrderItem> orderItems = factory.createOrderItems(
-            order.Id,
-            new List<PricebookEntry>{
-                specialPricebookEntries.get(0),
-                specialPricebookEntries.get(1)
-            }
-        );
-        insert orderItems;
     }
 
     @IsTest

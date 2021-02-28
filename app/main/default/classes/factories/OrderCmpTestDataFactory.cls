@@ -2,7 +2,7 @@
  * Created by Ilya Matsuev on 2/27/2021.
  */
 
-public with sharing class AvailableProductCmpTestDataFactory implements IAvailableProductCmpTestDataFactory {
+public with sharing class OrderCmpTestDataFactory implements IOrderCmpTestDataFactory {
     public final static Integer DEFAULT_ORDER_ITEM_QUANTITY = 1;
 
     public Account createAccount(String name) {

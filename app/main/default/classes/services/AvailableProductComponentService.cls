@@ -82,7 +82,9 @@ public with sharing class AvailableProductComponentService extends OrderService 
                     Label.OrderLockedErrorMessage
                 );
             }
-            throw new AvailableProductComponentException(error.getMessage());
+            throw new AvailableProductComponentException(
+                error.getDmlMessage(0)
+            );
         } catch (Exception error) {
             throw new AvailableProductComponentException(
                 Label.UnexpectedErrorMessage
