@@ -32,6 +32,7 @@ sfdx force:source:push -u "$scratch_alias"
 echo
 echo "Assigning permissions..."
 sfdx force:user:permset:assign -n Available_Products_Component -u "$scratch_alias"
+sfdx force:user:permset:assign -n Order_Products_Component -u "$scratch_alias"
 
 echo
 echo "Loading data..."

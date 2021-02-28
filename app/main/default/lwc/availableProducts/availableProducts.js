@@ -5,8 +5,9 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import getAvailableProducts from '@salesforce/apex/AvailableProductComponentController.getAvailableProducts';
 import addProducts from '@salesforce/apex/AvailableProductComponentController.addProducts';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { columns, sorting, component } from './config';
+import { fireEvent } from 'c/pubsub';
+import { component, controlConfig, tableConfig } from './config';
+import { CurrentPageReference } from 'lightning/navigation';
 
 export default class AvailableProducts extends LightningElement {
     @api recordId;
@@ -14,47 +15,70 @@ export default class AvailableProducts extends LightningElement {
     @api icon = component.icon;
     @api noDataMessage = component.noDataMessage;
     @track loading = true;
-    @track data;
-    @track columns = columns;
-    @track sortBy = sorting.sortBy;
-    @track sortDirection = sorting.sortDirection;
-    @track sortByPrioritized = sorting.sortByPrioritized;
-    @track searchTerm = '';
 
-    get haveData() {
-        return this.data && this.data.length > 0;
+    @track controlsConfig = {
+        ...controlConfig,
+        button: {
+            ...controlConfig.button,
+            onClick: this.onAddProducts.bind(this)
+        },
+        search: {
+            ...controlConfig.search,
+            onSearch: this.onProductSearch.bind(this)
+        }
+    };
+
+    @track tableConfig = {
+        ...tableConfig,
+        onSort: this.onProductsSort.bind(this)
+    };
+
+    get genericTemplate() {
+        return this.template.querySelector('.generic-template');
     }
+
+    @wire(CurrentPageReference) pageRef;
 
     @wire(getAvailableProducts, {
         orderId: '$recordId',
-        productNameSearchTerm: '$searchTerm'
+        productNameSearchTerm: '$controlsConfig.search.searchTerm'
     })
-    fetchProducts({ data = [], error }) {
+    fetchProducts({ data, error }) {
         if (!error && !data) {
             this.loading = true;
+        } else if (error) {
+            this.handleError(error);
         } else {
-            if (error) {
-                this.notify(error.body.message, 'error');
-            }
-            this.data = this.sort(data);
+            this.tableConfig.data =
+                this.sort(
+                    data,
+                    this.tableConfig.sortBy,
+                    this.tableConfig.sortDirection
+                ) || [];
             this.loading = false;
         }
     }
 
     onProductsSort({ detail }) {
-        this.sortBy = detail.fieldName;
-        this.sortDirection = detail.sortDirection;
-
-        this.data = this.sort(this.data);
+        this.tableConfig = {
+            ...this.tableConfig,
+            data: this.sort(
+                this.tableConfig.data,
+                detail.fieldName,
+                detail.sortDirection
+            ),
+            sortBy: detail.fieldName,
+            sortDirection: detail.sortDirection
+        };
     }
 
     onProductSearch({ target }) {
         this.loading = true;
-        this.searchTerm = target.value;
+        this.controlsConfig.search.searchTerm = target.value;
     }
 
     onAddProducts() {
-        const datatable = this.template.querySelector('.products-table');
+        const datatable = this.genericTemplate.table;
         const selectedProducts = datatable.getSelectedRows();
         if (selectedProducts && selectedProducts.length > 0) {
             this.loading = true;
@@ -62,38 +86,39 @@ export default class AvailableProducts extends LightningElement {
                 orderId: this.recordId,
                 serializedProducts: JSON.stringify(selectedProducts)
             })
-                .then((addedProducts) =>
-                    this.handleProductsAdded(addedProducts)
-                )
+                .then((products) => this.handleProductsAdded(products))
                 .catch((error) => this.handleError(error));
         }
     }
 
     handleProductsAdded(addedProducts) {
-        this.data = this.sort(
-            // Replacing this.data with the updated records
-            this.data.map(
+        this.tableConfig.data = this.sort(
+            // Replacing data array with the updated records
+            this.tableConfig.data.map(
                 (pr) => addedProducts.find((p) => p.id === pr.id) || pr
-            )
+            ),
+            this.tableConfig.sortBy,
+            this.tableConfig.sortDirection
+        );
+        this.refreshView();
+        this.genericTemplate.notify(
+            'Products were successfully added to the order'
         );
         this.loading = false;
-        this.refreshView();
-        this.notify('Products were successfully added to the order');
     }
 
     handleError(error) {
+        this.genericTemplate.notify(error.body.message, 'error');
         this.loading = false;
-        this.notify(error.body.message, 'error');
     }
 
-    sort(
-        data,
-        field = this.sortBy,
-        priorityField = this.sortByPrioritized,
-        direction = this.sortDirection
-    ) {
-        const prioritizedData = data.filter((d) => d[priorityField]);
-        const otherData = data.filter((d) => !d[priorityField]);
+    sort(data, field, direction) {
+        const prioritizedData = data.filter(
+            (d) => d[this.tableConfig.sortByPrioritized]
+        );
+        const otherData = data.filter(
+            (d) => !d[this.tableConfig.sortByPrioritized]
+        );
 
         const isAscending = direction === 'asc' ? 1 : -1;
 
@@ -103,31 +128,22 @@ export default class AvailableProducts extends LightningElement {
             return isAscending * ((x > y) - (y > x));
         };
 
-        prioritizedData.sort(sortingCallback);
-        otherData.sort(sortingCallback);
-
-        return prioritizedData.concat(otherData);
-    }
-
-    notify(message, variant = 'success') {
-        console.log(message);
-        this.dispatchEvent(
-            new ShowToastEvent({
-                title: variant === 'success' ? 'Success!' : 'Error!',
-                message,
-                variant,
-                mode: 'pester'
-            })
-        );
+        return prioritizedData
+            .sort(sortingCallback)
+            .concat(otherData.sort(sortingCallback));
     }
 
     refreshView() {
+        // Line below is needed to refresh standard order related list
         // I could utilize getRecordNotifyChange method which came in Winter 21 but it has one disadvantage:
         // - It will not update order related list if I create a new order item fot the order.
         // This method can only update view for the records that were already presented
         // Also, I could wrap this lwc component into an aura component and handle an event to call force:refreshView
-        // But I found this trick below much easier
+        // So, I found this trick below much easier
         // eslint-disable-next-line no-eval
         eval('$A.get("e.force:refreshView").fire();');
+
+        // This is needed for other custom components
+        fireEvent(this.pageRef, 'refreshView', {});
     }
 }

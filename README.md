@@ -36,10 +36,10 @@ Build 2 LWC components and put them on order record page:
     -   [x] When the same product is not yet added to the order it will be added with a quantity of 1
     -   [x] When the product already exists the quantity of the existing order product should be increased by 1
 
--   [ ] "Order Products" component has to display the order products in a table displaying the Name, Unit Price, Quantity and Total Price
+-   [x] "Order Products" component has to display the order products in a table displaying the Name, Unit Price, Quantity and Total Price
 
-    -   [ ] When the user adds a new product or updates an existing product on the order (see point 3) the list is refreshed to display the newly added
-    -   [ ] **(Optional)** Sort the list by column
+    -   [x] When the user adds a new product or updates an existing product on the order (see point 3) the list is refreshed to display the newly added
+    -   [x] **(Optional)** Sort the list by column
 
 -   [ ] "Order Products" component has an "Activate" button that sets the status of the order and order items to "Activated"
 
@@ -55,9 +55,9 @@ Build 2 LWC components and put them on order record page:
 
 ## Extra Requirements
 
--   [ ] Components should be independent (we should be able to drag and drop them at any place in the layout)
+-   [x] Components should be independent (we should be able to drag and drop them at any place in the layout)
 
-    -   [ ] To ensure an optimal user experience the page should not be reloaded and only the changed or new items should be refreshed/added
+    -   [x] To ensure an optimal user experience the page should not be reloaded and only the changed or new items should be refreshed/added
 
 -   [ ] Extend the logic of "Order Products" component’s "Activate" button to do the confirmation of the order in an external system
 
