@@ -7,6 +7,9 @@ public with sharing class OrderDao implements IOrderDao {
         List<Order> orders = [
             SELECT
                 Pricebook2Id,
+                OrderNumber,
+                Account.AccountNumber,
+                Type,
                 Status,
                 (
                     SELECT
@@ -17,7 +20,8 @@ public with sharing class OrderDao implements IOrderDao {
                         ListPrice,
                         TotalPrice,
                         Product2.Id,
-                        Product2.Name
+                        Product2.Name,
+                        Product2.ProductCode
                     FROM OrderItems
                 )
             FROM Order

@@ -7,6 +7,7 @@
             },
             "EffectiveDate": "2021-03-25",
             "Status": "Draft",
+            "Type": "Type1",
             "AccountId": "@AccountRef1",
             "ContractId": "@ContractRef1",
             "Pricebook2Id": "@Pricebook2Ref1"

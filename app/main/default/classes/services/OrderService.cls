@@ -5,6 +5,8 @@
 public virtual with sharing class OrderService implements IOrderService {
     protected final IOrderDao orderDao = new OrderDao();
 
+    protected final IOrderWebService orderWebService = new OrderWebService();
+
     public virtual Order getOrder(Id orderId) {
         return orderDao.getById(orderId);
     }

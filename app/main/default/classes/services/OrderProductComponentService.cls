@@ -23,6 +23,7 @@ public with sharing class OrderProductComponentService extends OrderService impl
         if (order.Status != 'Activated') {
             order.Status = 'Activated';
             orderDao.updateOrder(order);
+            orderWebService.activateAsync(order);
         }
         return order;
     }

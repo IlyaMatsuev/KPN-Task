@@ -59,9 +59,9 @@ Build 2 LWC components and put them on order record page:
 
     -   [x] To ensure an optimal user experience the page should not be reloaded and only the changed or new items should be refreshed/added
 
--   [ ] Extend the logic of "Order Products" component’s "Activate" button to do the confirmation of the order in an external system
+-   [x] Extend the logic of "Order Products" component’s "Activate" button to do the confirmation of the order in an external system
 
-    -   [ ] The request format expected by the external system should follow the following JSON structure:
+    -   [x] The request format expected by the external system should follow the following JSON structure:
 
     ```json
     {
@@ -80,13 +80,13 @@ Build 2 LWC components and put them on order record page:
     }
     ```
 
-    -   [ ] Request is sent as POST
-    -   [ ] Order of the JSON fields in the above JSON structure is not relevant, but the data type is
-    -   [ ] Errors and time-outs of the external system need to be handled
-        -   [ ] All 200 responses are considered OK
-        -   [ ] Any non-200 response is handled as ERROR
-        -   [ ] For this use case generate a new endpoint URL at https://requestcatcher.com/
-        -   [ ] We prefer to see this implemented using apex
+    -   [x] Request is sent as POST
+    -   [x] Order of the JSON fields in the above JSON structure is not relevant, but the data type is
+    -   [x] Errors and time-outs of the external system need to be handled
+        -   [x] All 200 responses are considered OK
+        -   [x] Any non-200 response is handled as ERROR
+        -   [x] For this use case generate a new endpoint URL at https://requestcatcher.com/
+        -   [x] We prefer to see this implemented using apex
 
 -   [ ] The number of products can exceed 200; the solution needs to be able to handle this while providing a proper user experience
 

@@ -64,11 +64,15 @@ public with sharing class OrderProductCmpControllerTest {
         contract.Status = 'Activated';
         update contract;
 
+        Test.setMock(HttpCalloutMock.class, new OrderWebServiceMock());
+
         System.assertEquals('Draft', order.Status);
 
+        Test.startTest();
         Order actualOrder = OrderProductComponentController.activateOrder(
             order.Id
         );
+        Test.stopTest();
 
         System.assertNotEquals(null, order);
         System.assertEquals(order.Id, actualOrder.Id);

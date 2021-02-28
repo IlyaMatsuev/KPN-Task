@@ -25,4 +25,30 @@
         <value
         >Some unexpected error happened. Contact your administrator</value>
     </labels>
+    <labels>
+        <fullName>OrderActivationResponseErrorMessage</fullName>
+        <categories>OrderWebService</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>OrderActivationResponseErrorMessage</shortDescription>
+        <value>Order activation response has been unexpectedly failed</value>
+    </labels>
+    <labels>
+        <fullName>OrderWebServiceEndpoint</fullName>
+        <categories>OrderWebService</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>OrderWebServiceEndpoint</shortDescription>
+        <value>https://kpn-task-orderwebservice.requestcatcher.com/test</value>
+    </labels>
+    <labels>
+        <fullName>OrderWebServiceUnexpectedErrorMessage</fullName>
+        <categories>OrderWebService</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription
+        >OrderWebServiceUnexpectedErrorMessage</shortDescription>
+        <value
+        >Unexpected error happened during order web service callout execution</value>
+    </labels>
 </CustomLabels>
