@@ -8,7 +8,15 @@ public with sharing class OrderDao implements IOrderDao {
             SELECT
                 Pricebook2Id,
                 (
-                    SELECT OrderId, PricebookEntryId, Product2.Id, Quantity
+                    SELECT
+                        OrderId,
+                        PricebookEntryId,
+                        Quantity,
+                        UnitPrice,
+                        ListPrice,
+                        TotalPrice,
+                        Product2.Id,
+                        Product2.Name
                     FROM OrderItems
                 )
             FROM Order

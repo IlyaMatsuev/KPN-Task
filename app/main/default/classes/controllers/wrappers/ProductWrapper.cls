@@ -13,6 +13,15 @@ public inherited sharing class ProductWrapper {
     public Decimal listPrice { get; set; }
 
     @AuraEnabled
+    public Decimal unitPrice { get; set; }
+
+    @AuraEnabled
+    public Decimal totalPrice { get; set; }
+
+    @AuraEnabled
+    public Decimal quantity { get; set; }
+
+    @AuraEnabled
     public Boolean assignedToOrder { get; set; }
 
     public ProductWrapper(
@@ -25,5 +34,20 @@ public inherited sharing class ProductWrapper {
         this.name = name;
         this.listPrice = listPrice;
         this.assignedToOrder = assignedToOrder;
+    }
+
+    public ProductWrapper(
+        Id id,
+        String name,
+        Decimal unitPrice,
+        Decimal quantity,
+        Decimal totalPrice
+    ) {
+        this.id = id;
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
+        this.quantity = quantity;
+        this.assignedToOrder = true;
     }
 }

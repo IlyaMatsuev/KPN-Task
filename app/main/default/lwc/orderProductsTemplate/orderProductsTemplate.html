@@ -1,0 +1,66 @@
+<!--
+ - Created by Ilya Matsuev on 2/28/2021.
+ -->
+
+<template>
+    <lightning-card title={title} variant="narrow" icon-name={icon}>
+        <template if:true={controlsConfig.enableControls}>
+            <div class="slds-m-horizontal_medium">
+                <div class="slds-m-top_medium slds-m-bottom_xx-small">
+                    <div class="slds-text-align_right">
+                        <lightning-button
+                            variant="brand"
+                            label={controlsConfig.button.label}
+                            title={controlsConfig.button.label}
+                            disabled={loading}
+                            onclick={controlsConfig.button.onClick}
+                        >
+                        </lightning-button>
+                    </div>
+                </div>
+                <div>
+                    <lightning-input
+                        type="search"
+                        label=""
+                        variant="label-hidden"
+                        placeholder="Type Product Name..."
+                        onchange={controlsConfig.search.onSearch}
+                        value={controlsConfig.search.searchTerm}
+                    >
+                    </lightning-input>
+                </div>
+            </div>
+        </template>
+        <div slot="footer">
+            <template if:true={loading}>
+                <div class="slds-is-relative slds-p-vertical_x-large">
+                    <lightning-spinner
+                        alternative-text="Loading..."
+                        variant="brand"
+                    >
+                    </lightning-spinner>
+                </div>
+            </template>
+            <template if:false={loading}>
+                <template if:true={haveData}>
+                    <lightning-datatable
+                        key-field="id"
+                        hide-checkbox-column={tableConfig.hideCheckboxes}
+                        class="products-table"
+                        sorted-by={tableConfig.sortBy}
+                        sorted-direction={tableConfig.sortDirection}
+                        onsort={tableConfig.onSort}
+                        data={tableConfig.data}
+                        columns={tableConfig.columns}
+                    >
+                    </lightning-datatable>
+                </template>
+                <template if:false={haveData}>
+                    <div class="slds-text-align_center slds-m-vertical_small">
+                        <span>{noDataMessage}</span>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

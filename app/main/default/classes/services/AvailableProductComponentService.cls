@@ -2,17 +2,12 @@
  * Created by Ilya Matsuev on 2/27/2021.
  */
 
-public with sharing class AvailableProductComponentService implements IAvailableProductComponentService {
+public with sharing class AvailableProductComponentService extends OrderService implements IAvailableProductComponentService {
     public final static Decimal INIT_QUANTITY_AMOUNT = 1;
 
     private final static String ORDER_LOCKED_ERROR_CODE = 'ENTITY_IS_LOCKED';
 
-    private final IOrderDao orderDao = new OrderDao();
     private final IPricebookDao pricebookDao = new PricebookDao();
-
-    public Order getOrder(Id orderId) {
-        return orderDao.getById(orderId);
-    }
 
     public List<ProductWrapper> getAvailableProducts(
         Order order,

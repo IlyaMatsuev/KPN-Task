@@ -42,7 +42,7 @@
                     <value>linear</value>
                 </componentInstanceProperties>
                 <componentName
-        >runtime_sales_pathassistant:pathAssistant</componentName>
+                >runtime_sales_pathassistant:pathAssistant</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -134,7 +134,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName
-        >runtime_sales_activities:activityPanel</componentName>
+                >runtime_sales_activities:activityPanel</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -167,6 +167,11 @@
         <itemInstances>
             <componentInstance>
                 <componentName>availableProducts</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>orderProducts</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
