@@ -14,7 +14,7 @@ public with sharing class OrderProductComponentController {
         try {
             Order order = service.getOrder(orderId);
             return service.getOrderedProducts(order);
-        } catch (Exception error) {
+        } catch (OrderProductComponentException error) {
             throw new AuraHandledException(error.getMessage());
         }
     }
@@ -28,7 +28,7 @@ public with sharing class OrderProductComponentController {
         try {
             Order order = service.getOrder(orderId);
             return service.activateOrder(order);
-        } catch (Exception error) {
+        } catch (OrderProductComponentException error) {
             throw new AuraHandledException(error.getMessage());
         }
     }

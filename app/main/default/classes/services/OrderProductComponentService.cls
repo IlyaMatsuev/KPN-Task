@@ -4,27 +4,41 @@
 
 public with sharing class OrderProductComponentService extends OrderService implements IOrderProductComponentService {
     public List<ProductWrapper> getOrderedProducts(Order order) {
-        List<ProductWrapper> products = new List<ProductWrapper>();
-        for (OrderItem orderItem : order.OrderItems) {
-            products.add(
-                new ProductWrapper(
-                    orderItem.Product2.Id,
-                    orderItem.Product2.Name,
-                    orderItem.UnitPrice,
-                    orderItem.Quantity,
-                    orderItem.TotalPrice
-                )
+        try {
+            List<ProductWrapper> products = new List<ProductWrapper>();
+            for (OrderItem orderItem : order.OrderItems) {
+                products.add(
+                    new ProductWrapper(
+                        orderItem.Product2.Id,
+                        orderItem.Product2.Name,
+                        orderItem.UnitPrice,
+                        orderItem.Quantity,
+                        orderItem.TotalPrice
+                    )
+                );
+            }
+            return products;
+        } catch (Exception error) {
+            throw new OrderProductComponentException(
+                Label.UnexpectedErrorMessage
             );
         }
-        return products;
     }
 
     public Order activateOrder(Order order) {
-        if (order.Status != 'Activated') {
-            order.Status = 'Activated';
-            orderDao.updateOrder(order);
-            orderWebService.activateAsync(order);
+        try {
+            if (order.Status != 'Activated') {
+                order.Status = 'Activated';
+                orderDao.updateOrder(order);
+                orderWebService.activateAsync(order);
+            }
+            return order;
+        } catch (DmlException error) {
+            throw new OrderProductComponentException(error.getDmlMessage(0));
+        } catch (Exception error) {
+            throw new OrderProductComponentException(
+                Label.UnexpectedErrorMessage
+            );
         }
-        return order;
     }
 }

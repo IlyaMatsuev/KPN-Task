@@ -57,6 +57,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OrderProductComponentException</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OrderProductComponentService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -70,6 +74,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>OrderWebService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OrderWebServiceMock</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

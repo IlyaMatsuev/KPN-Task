@@ -9,29 +9,20 @@
         <value>There is no order with such id</value>
     </labels>
     <labels>
-        <fullName>OrderLockedErrorMessage</fullName>
-        <categories>AvailableProductComponent</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>OrderLockedErrorMessage</shortDescription>
-        <value>You cannot add new products after the order is activated</value>
-    </labels>
-    <labels>
-        <fullName>UnexpectedErrorMessage</fullName>
-        <categories>AvailableProductComponent</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>UnexpectedErrorMessage</shortDescription>
-        <value
-        >Some unexpected error happened. Contact your administrator</value>
-    </labels>
-    <labels>
         <fullName>OrderActivationResponseErrorMessage</fullName>
         <categories>OrderWebService</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>OrderActivationResponseErrorMessage</shortDescription>
         <value>Order activation response has been unexpectedly failed</value>
+    </labels>
+    <labels>
+        <fullName>OrderLockedErrorMessage</fullName>
+        <categories>AvailableProductComponent</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>OrderLockedErrorMessage</shortDescription>
+        <value>You cannot add new products after the order is activated</value>
     </labels>
     <labels>
         <fullName>OrderWebServiceEndpoint</fullName>
@@ -50,5 +41,13 @@
         >OrderWebServiceUnexpectedErrorMessage</shortDescription>
         <value
         >Unexpected error happened during order web service callout execution</value>
+    </labels>
+    <labels>
+        <fullName>UnexpectedErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UnexpectedErrorMessage</shortDescription>
+        <value
+        >Some unexpected error happened. Contact your administrator</value>
     </labels>
 </CustomLabels>
