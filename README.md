@@ -8,6 +8,7 @@ The README contains information about the requirements for the task and how to d
 -   [Detailed Requirements](#detailed-requirements)
 -   [Extra Requirements](#extra-requirements)
 -   [Installation](#installation)
+-   [Demo](#demo)
 
 ## General Requirement
 
@@ -113,3 +114,17 @@ cd ./kpn-task
 4. Follow the instructions in script
 
 5. Assign products to Standard and Custom price books for demo
+
+## Demo
+
+#### Scratch Org Installation
+
+![Scratch Org Installation](/docs/demos/Init_Scratch_Demo.gif)
+
+#### Available Products and Order Products components
+
+![Available Products and Order Products components](/docs/demos/Components_Demo.gif)
+
+#### Order Activation Integration
+
+![Order Activation Integration](/docs/demos/Order_Activation_Integration_Demo.gif)
